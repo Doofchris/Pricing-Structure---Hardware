@@ -16,11 +16,13 @@ It is used to calculate selling prices for items that are not entered in the sys
 ## How the selling price is calculated (June-2026)
 
 ```
-Landed Cost (CAD)  = Purchase Price × (1 − Siegenia Discount) × (1 + Freight %) × Exchange Rate × (1 + Surcharge %)
+Landed Cost (CAD)  = Purchase Price × (1 − Siegenia Discount) × (1 + Freight % + Surcharge %) × Exchange Rate
 Fabricator         = Landed Cost ÷ (1 − Profit Margin %)
 Non Fabricator     = Fabricator × 1.25
 End Customer       = Fabricator × 1.50
 ```
+
+The surcharge (MTZ, Duties, Sima) is charged on the net purchase price only, not on freight. Note: the Excel sheet (cell H8) still multiplies surcharge and freight, which gives a slightly higher landed cost.
 
 Selling price below box quantity: add a 20% upcharge.
 
@@ -91,3 +93,4 @@ A standalone copy (`SP-Calculator-June-2026.html`) can be opened in any browser 
 | 2026-11 | Calculator: removed the "below box quantity" option and the calculation breakdown panel (20% upcharge below box qty is applied manually). |
 | 2026-11 | Calculator: tried an old-school green-on-black look, then returned to the previous spreadsheet look. |
 | 2026-11 | Calculator: column order is now Purchase Price, Siegenia MG, Siegenia Discount, Freight %, Surcharge, Exchange Rate, Landed Cost, Profit Margin %, Fabricator, Non Fabricator, End Customer. |
+| 2026-11 | Calculator: surcharge now charged on the net purchase price only (added to freight %), no longer on top of freight. |
