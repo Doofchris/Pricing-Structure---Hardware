@@ -89,3 +89,4 @@ A standalone copy (`SP-Calculator-June-2026.html`) can be opened in any browser 
 | 2026-11 | README expanded with formula and input factors; online calculator added. |
 | 2026-11 | Calculator: Purchase Price is a typed field; exchange rate fixed to EUR 1.60 / USD 1.40 (other rates need management approval). |
 | 2026-11 | Calculator: removed the "below box quantity" option and the calculation breakdown panel (20% upcharge below box qty is applied manually). |
+| 2026-11 | Calculator: new look, old-school green-on-black computer screen. |
