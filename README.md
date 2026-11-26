@@ -90,3 +90,4 @@ A standalone copy (`SP-Calculator-June-2026.html`) can be opened in any browser 
 | 2026-11 | Calculator: Purchase Price is a typed field; exchange rate fixed to EUR 1.60 / USD 1.40 (other rates need management approval). |
 | 2026-11 | Calculator: removed the "below box quantity" option and the calculation breakdown panel (20% upcharge below box qty is applied manually). |
 | 2026-11 | Calculator: tried an old-school green-on-black look, then returned to the previous spreadsheet look. |
+| 2026-11 | Calculator: column order is now Purchase Price, Siegenia MG, Siegenia Discount, Freight %, Surcharge, Exchange Rate, Landed Cost, Profit Margin %, Fabricator, Non Fabricator, End Customer. |
