@@ -42,7 +42,7 @@ Selling price below box quantity: add a 20% upcharge.
 | US Supplier | 15% |
 | CA Supplier | min 5% |
 
-**Exchange rate**: EUR 1.60, USD 1.40. For dummy items, use the current exchange rate.
+**Exchange rate**: EUR 1.60, USD 1.40. For dummy items, use the current exchange rate. Any other rate requires management approval.
 
 **Surcharge (MTZ, Duties, Sima)**
 
@@ -77,7 +77,9 @@ Selling price below box quantity: add a 20% upcharge.
 A web version of the June-2026 calculator is available (private link, ask the owner for access):
 https://claude.ai/artifact/SekFMpokdyJR2iDDDRGzYP
 
-It shows the calculation in one row like the sheet, with dropdowns for Siegenia MG, Freight, Exchange rate, Surcharge and Margin, plus a "Custom" option for values not in the list.
+It shows the calculation in one row like the sheet, with dropdowns for Siegenia MG, Freight, Exchange rate, Surcharge and Margin. Freight, Surcharge and Margin have a "Custom" option for values not in the list. The exchange rate is fixed to 1.60 EUR or 1.40 USD; choosing "Other rate…" shows "Management approval required" and keeps the current rate.
+
+A standalone copy (`SP-Calculator-June-2026.html`) can be opened in any browser by double-clicking it.
 
 ## Change log
 
@@ -85,3 +87,4 @@ It shows the calculation in one row like the sheet, with dropdowns for Siegenia 
 |------|--------|
 | 2026-06 | Workbook updated with June-2026 calculator and Siegenia discounts. |
 | 2026-11 | README expanded with formula and input factors; online calculator added. |
+| 2026-11 | Calculator: Purchase Price is a typed field; exchange rate fixed to EUR 1.60 / USD 1.40 (other rates need management approval). |
