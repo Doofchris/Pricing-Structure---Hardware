@@ -80,7 +80,11 @@ tr > :last-child { border-right: 0; }
 thead tr:first-child > * { border-top: 0; }
 tbody tr:last-child > * { border-bottom: 0; }
 .tiers th { background: transparent; border-top: 0; border-left: 0; border-right: 0; font-family: var(--f-display); font-weight: 700; font-size: .9rem; text-transform: uppercase; letter-spacing: .05em; text-align: center; padding: 8px 6px 6px; }
-.heads th.t { background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: .8rem; }
+.heads th.t { background: var(--head); font-weight: 700; font-size: .85rem; }
+/* Tier names on the dark header: green / blue / red (bright shades so they read on #353535) */
+.heads th.t-fab { color: #8fd35c; }
+.heads th.t-non { color: #6fb8ff; }
+.heads th.t-end { color: #ff6f6f; }
 .tiers th.t { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); border-top: 0; }
 .heads th { background: var(--head); font-family: var(--f-display); font-weight: 700; color: var(--head-ink); border-color: #4a4a4a; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; text-align: left; line-height: 1.2; height: 48px; }
 .heads th small { display: block; font-family: var(--f-body); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--head-muted); font-size: .72rem; }
@@ -165,9 +169,9 @@ td.in select { text-align: center; text-align-last: center; }
             <th><label for="rate">Exchange rate</label></th>
             <th>Landed Cost</th>
             <th><label for="margin">Profit Margin %</label></th>
-            <th class="t">Fabricator</th>
-            <th class="t">Non Fabricator</th>
-            <th class="t">End Customer</th>
+            <th class="t t-fab">Fabricator</th>
+            <th class="t t-non">Non Fabricator</th>
+            <th class="t t-end">End Customer</th>
           </tr>
         </thead>
         <tbody>
