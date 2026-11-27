@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SP Calculator June-2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one worksheet row, like B7:L8 in Excel — header row, one entry row, notes row; scrolls sideways inside its own frame on narrow screens. */
+:root {
+  --bg: #f3f5f6;
+  --panel: #ffffff;
+  --ink: #17212b;
+  --muted: #5b6874;
+  --line: #c9d2d8;
+  --head: #e8edf0;
+  --input: #fff8db;       /* the sheet's "shaded area" for entry */
+  --input-line: #e2cf7f;
+  --accent: #1f5f8b;
+  --accent-soft: #e3eef6;
+  --warn: #9a5b00;
+  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11171c; --panel: #19222a; --ink: #e6ecf0; --muted: #93a2ae; --line: #33424e; --head: #212c35;
+    --input: #2a2614; --input-line: #6d5f25; --accent: #7cb8e0; --accent-soft: #1b3346; --warn: #e0a54a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11171c; --panel: #19222a; --ink: #e6ecf0; --muted: #93a2ae; --line: #33424e; --head: #212c35;
+  --input: #2a2614; --input-line: #6d5f25; --accent: #7cb8e0; --accent-soft: #1b3346; --warn: #e0a54a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 14px; line-height: 1.4;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 40px;
+}
+.wrap { max-width: 1600px; margin: 0 auto; display: grid; gap: 16px; }
+.wrap > * { min-width: 0; }
+header h1 {
+  font-family: var(--f-display); font-weight: 700; font-size: 1.6rem; letter-spacing: .01em;
+  margin: 0; text-wrap: balance; text-transform: uppercase;
+}
+header p { margin: 4px 0 0; color: var(--muted); max-width: 80ch; }
+.hint { display: inline-flex; align-items: center; gap: 8px; font-size: .8rem; color: var(--muted); margin-top: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.swatch { width: 14px; height: 14px; border-radius: 2px; background: var(--input); border: 1px solid var(--input-line); }
+
+.frame { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; overflow-x: auto; min-width: 0; }
+table { border-collapse: collapse; width: 100%; min-width: 1360px; table-layout: fixed; }
+th, td { border: 1px solid var(--line); padding: 6px 8px; vertical-align: middle; }
+tr > :first-child { border-left: 0; }
+tr > :last-child { border-right: 0; }
+thead tr:first-child > * { border-top: 0; }
+tbody tr:last-child > * { border-bottom: 0; }
+.tiers th { background: transparent; border-top: 0; border-left: 0; border-right: 0; font-family: var(--f-display); font-weight: 700; font-size: .9rem; text-transform: uppercase; letter-spacing: .05em; text-align: center; padding: 8px 6px 6px; }
+.tiers th.t { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); border-top: 0; }
+.heads th { background: var(--head); font-family: var(--f-display); font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; text-align: left; line-height: 1.2; height: 48px; }
+.heads th small { display: block; font-family: var(--f-body); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted); font-size: .72rem; }
+td.in { background: var(--input); padding: 4px; }
+td.out { font: 500 .95rem var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+td.money { font-size: 1.05rem; color: var(--accent); background: var(--accent-soft); }
+td.landed { font-weight: 600; }
+select, input[type=text] {
+  width: 100%; font: 500 .9rem var(--f-mono); color: var(--ink);
+  background: transparent; border: 1px solid transparent; border-radius: 3px; padding: 6px 4px;
+  font-variant-numeric: tabular-nums;
+}
+input[type=text] { text-align: right; }
+select:hover, input[type=text]:hover { border-color: var(--input-line); }
+select:focus-visible, input:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+td.in .custom { margin-top: 3px; border-color: var(--input-line); background: var(--panel); }
+.custom[hidden] { display: none; }
+.lockmsg { margin-top: 4px; padding: 5px 6px; border-radius: 3px; background: var(--panel); border: 1px solid var(--warn); color: var(--warn); font: 600 .75rem var(--f-body); line-height: 1.25; }
+.notes td { border-top: 0; font-size: .74rem; color: var(--muted); padding: 4px 8px 8px; vertical-align: top; }
+.notes td.warn, .warn { color: var(--warn); }
+.copy { font: 500 .72rem var(--f-body); color: var(--accent); background: transparent; border: 1px solid var(--line); border-radius: 3px; padding: 2px 8px; cursor: pointer; }
+.copy:hover { border-color: var(--accent); }
+
+.opts { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
+.opts button { font: 500 .85rem var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 6px 12px; cursor: pointer; }
+.scrollhint { display: none; font-size: .75rem; color: var(--muted); }
+@media (max-width: 1400px) { .scrollhint { display: block; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Pricing Structure for Hardware Systems</h1>
+    <p>Selling price calculator for items not entered in the system, from the <em>SP Calculator June-2026</em> sheet. For dummy items, use the current exchange rate.</p>
+    <span class="hint"><span class="swatch"></span>Enter figures in shaded area only</span>
+  </header>
+
+  <form id="calc" autocomplete="off">
+    <div class="frame">
+      <table>
+        <colgroup>
+          <col style="width:8%"><col style="width:9%"><col style="width:7%"><col style="width:12%"><col style="width:13%"><col style="width:8%">
+          <col style="width:8%"><col style="width:11%"><col style="width:8%"><col style="width:8%"><col style="width:8%">
+        </colgroup>
+        <thead>
+          <tr class="tiers">
+            <th colspan="8"></th>
+            <th class="t">Fabricator</th><th class="t">Non Fabricator</th><th class="t">End Customer</th>
+          </tr>
+          <tr class="heads">
+            <th><label for="price">Purchase Price</label></th>
+            <th><label for="mg">Siegenia MG</label></th>
+            <th>Siegenia Discount</th>
+            <th><label for="sur">Surcharge</label><small>MTZ, Duties, Sima</small></th>
+            <th><label for="freight">Freight %</label></th>
+            <th><label for="rate">Exchange rate</label></th>
+            <th>Landed Cost</th>
+            <th><label for="margin">Profit Margin %</label></th>
+            <th>Selling Price<small>CAD $</small></th>
+            <th>Selling Price<small>CAD $</small></th>
+            <th>Selling Price<small>CAD $</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="in"><input id="price" type="text" inputmode="decimal" value="10.00"></td>
+            <td class="in"><select id="mg"></select></td>
+            <td class="out" id="disc">0.00%</td>
+            <td class="in">
+              <select id="sur"></select>
+              <input class="custom" id="surCustom" type="text" inputmode="decimal" placeholder="%" hidden aria-label="Custom surcharge percent">
+            </td>
+            <td class="in">
+              <select id="freight"></select>
+              <input class="custom" id="freightCustom" type="text" inputmode="decimal" placeholder="%" hidden aria-label="Custom freight percent">
+            </td>
+            <td class="in">
+              <select id="rate"></select>
+              <input class="custom" id="rateCustom" type="text" hidden aria-hidden="true" tabindex="-1">
+              <div class="lockmsg" id="rateMsg" role="alert" hidden>Management approval required</div>
+            </td>
+            <td class="out landed" id="landedCell">$0.00</td>
+            <td class="in">
+              <select id="margin"></select>
+              <input class="custom" id="marginCustom" type="text" inputmode="decimal" placeholder="%" hidden aria-label="Custom margin percent">
+            </td>
+            <td class="out money" id="fab">0.00</td>
+            <td class="out money" id="nonfab">0.00</td>
+            <td class="out money" id="end">0.00</td>
+          </tr>
+          <tr class="notes">
+            <td>Supplier currency</td>
+            <td></td>
+            <td>From MG</td>
+            <td id="surNote"></td>
+            <td id="freightNote"></td>
+            <td id="rateNote"></td>
+            <td>CAD</td>
+            <td id="marginNote"></td>
+            <td><button type="button" class="copy" data-copy="fab">Copy</button></td>
+            <td><button type="button" class="copy" data-copy="nonfab">Copy</button></td>
+            <td><button type="button" class="copy" data-copy="end">Copy</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="scrollhint">Scroll the table sideways to see all columns.</span>
+  </form>
+
+  <div class="opts">
+    <button type="button" id="reset">Reset to sheet defaults</button>
+  </div>
+
+</div>
+
+<script>
+// Input factors copied from "SP Calculator June-2026" (rows 12–78).
+const MG = [["none",0],["1",.3555],["6",.2192],["7",.1657],["8",.1592],["14",.1911],["18",.1911],["19",.1911],["20",.3411],["21",.3],["24",.4057],["28",.26],["38",.477],["40",.4127],["45",.2392],["47",.28],["48",.15],["51",.0735],["53",.5695],["54",.3495],["55",.3495],["59",.0748],["60",.2014],["62",1],["64",.3734],["70",.5449],["71",.3602],["72",.441],["78",.1629],["79",.1629],["89",.3407],["90",.3723],["FA",.3411],["FB",.3411],["FD",.3411],["FE",.3411],["FF",.3411],["FG",.3411],["FH",.3411],["H1",.2192],["H2",.2192],["H4",.2192],["HZ",.2192],["MA",.1592],["MB",.1592],["MC",.1592],["MD",.1592],["MH",.1592],["MS",.1592],["MX",.1592],["MY",.1592],["PE",.2724],["TA",.5695],["TB",.5695],["TC",.3734],["TD",.5695],["TE",.5588],["TF",.5695],["TG",.5695],["TH",.5588],["TI",.5695],["TJ",.5695],["TK",.5695],["TS",.3411],["ZS",.477]];
+
+const FREIGHT = [
+  ["EUR Consolidated Container", .10],
+  ["EUR Consolidated Container – Stadur Panels", .20],
+  ["EUR Consolidated Container – Foam Pads", .30],
+  ["EUR Reinforcement Container", .15],
+  ["EUR Airfreight", .12],
+  ["EUR Airfreight Jigs (Siegenia)", .17],
+  ["EUR Airfreight Wemaro (split cost with Wemaro)", .15],
+  ["EUR Airfreight (Tedee)", .10],
+  ["EUR Airfreight (CES)", .10],
+  ["US Supplier", .15],
+  ["CA Supplier (min 5%)", .05, "Minimum 5%; use Custom if higher"],
+];
+
+const SURCHARGE = [
+  ["None", 0],
+  ["Siegenia + KFV", .035],
+  ["CES", .0694],
+  ["OnLevel", .034],
+  ["OnLevel", .08],
+  ["PHI", .03],
+  ["Spax", .018],
+  ["Stadur", .07],
+  ["Gebhardt (tariffs)", .5],
+  ["Wemaro (to be checked)", null],
+];
+
+const RATE = [["EUR", 1.6], ["USD", 1.4]];
+
+const MARGIN = [
+  ["General min margin", .40],
+  ["Reinforcements", .40],
+  ["Fasteners", .45],
+  ["Moulded parts (PHI)", .48],
+  ["CES cylinder", .45, "Re-keying kits and knobs differ"],
+  ["Tedee", .40],
+];
+
+const DEFAULTS = { price: "10.00", mg: "0", freight: "0", rate: "0", sur: "1", margin: "0" };
+const $ = id => document.getElementById(id);
+// Accept typed values like "12,50", "$12.50" or "1 250.00".
+const num = v => parseFloat(String(v).replace(/[\s$€%]/g, "").replace(",", "."));
+const pct2 = v => (v * 100).toFixed(2) + "%";
+const money = v => isFinite(v) ? v.toLocaleString("en-CA", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "—";
+const fmtPct = v => (Math.round(v * 10000) / 100) + "%";
+
+function fill(sel, list, labelFn, withCustom) {
+  sel.innerHTML = "";
+  list.forEach((item, i) => {
+    const o = document.createElement("option");
+    o.value = String(i);
+    o.textContent = labelFn(item);
+    if (item[1] === null) o.disabled = true;
+    sel.appendChild(o);
+  });
+  if (withCustom) {
+    const o = document.createElement("option");
+    o.value = "custom"; o.textContent = "Custom…";
+    sel.appendChild(o);
+  }
+}
+
+fill($("mg"), MG, ([k, v]) => k === "none" ? "none" : `${k} — ${pct2(v)}`);
+fill($("freight"), FREIGHT, ([k, v]) => `${fmtPct(v)} ${k}`, true);
+fill($("sur"), SURCHARGE, ([k, v]) => v === null ? k : `${fmtPct(v)} ${k}`, true);
+fill($("rate"), RATE, ([k, v]) => `${v.toFixed(2)} ${k}`, false);
+// Exchange rates are fixed; any other rate needs management approval.
+(() => {
+  const o = document.createElement("option");
+  o.value = "locked"; o.textContent = "Other rate…";
+  $("rate").appendChild(o);
+  let last = $("rate").value, timer;
+  $("rate").addEventListener("focus", () => { last = $("rate").value; });
+  $("rate").addEventListener("change", e => {
+    if ($("rate").value === "locked") {
+      e.stopImmediatePropagation();
+      $("rate").value = last;
+      $("rateMsg").hidden = false;
+      clearTimeout(timer);
+      timer = setTimeout(() => { $("rateMsg").hidden = true; }, 5000);
+      calc();
+    } else { last = $("rate").value; $("rateMsg").hidden = true; }
+  });
+})();
+fill($("margin"), MARGIN, ([k, v]) => `${fmtPct(v)} ${k}`, true);
+$("margin").querySelector('option[value="custom"]').textContent = "Other (40–65%)…";
+
+function pick(selId, list, customId, divisor) {
+  const sel = $(selId), custom = $(customId);
+  const isCustom = sel.value === "custom";
+  custom.hidden = !isCustom;
+  if (isCustom) {
+    const n = num(custom.value);
+    return { value: isFinite(n) ? n / divisor : NaN, label: "Custom", note: "" };
+  }
+  const item = list[+sel.value];
+  return { value: item[1], label: item[0], note: item[2] || "" };
+}
+
+function calc() {
+  if ($("rate").value === "locked") return;
+  const price = num($("price").value) || 0;
+  const disc = MG[+$("mg").value][1];
+  const fr = pick("freight", FREIGHT, "freightCustom", 100);
+  const sur = pick("sur", SURCHARGE, "surCustom", 100);
+  const rt = pick("rate", RATE, "rateCustom", 1);
+  const mar = pick("margin", MARGIN, "marginCustom", 100);
+
+  $("freightNote").textContent = fr.note || fr.label;
+  $("rateNote").textContent = `${rt.label} → CAD · fixed rate`;
+  $("surNote").textContent = sur.label;
+  $("marginNote").className = "";
+  $("marginNote").textContent = $("margin").value === "custom" ? "Check with Management" : (mar.note || mar.label);
+  if (isFinite(mar.value) && mar.value >= 1) { $("marginNote").textContent = "Must be below 100%"; $("marginNote").className = "warn"; }
+
+  $("disc").textContent = pct2(disc);
+  // Hidden helper fields, same as the Excel sheet (row 8):
+  const priceDisc = price * (1 - disc);                       // E8 "price - disc"
+  const priceDiscDuties = priceDisc * (1 + sur.value);        // G8 "price-discount+dutis"
+  const freightAmt = priceDisc * (1 + fr.value) - priceDisc;  // I8 "price after disc+fright"
+  const landed = (priceDiscDuties + freightAmt) * rt.value;   // K8 Landed Cost
+  const fab = mar.value < 1 ? landed / (1 - mar.value) : NaN;
+  const nonfab = fab * 1.25, end = fab * 1.5;
+
+  $("landedCell").textContent = "$" + money(landed);
+  $("fab").textContent = "$" + money(fab);
+  $("nonfab").textContent = "$" + money(nonfab);
+  $("end").textContent = "$" + money(end);
+
+}
+
+function reset() {
+  $("price").value = DEFAULTS.price;
+  ["mg", "freight", "rate", "sur", "margin"].forEach(k => $(k).value = DEFAULTS[k]);
+  ["freightCustom", "surCustom", "marginCustom"].forEach(k => $(k).value = "");
+  calc();
+}
+
+$("calc").addEventListener("input", calc);
+$("calc").addEventListener("change", calc);
+$("calc").addEventListener("submit", e => e.preventDefault());
+$("reset").addEventListener("click", reset);
+// Select the whole value on click so typing replaces it.
+document.querySelectorAll('input[type=text]').forEach(el => el.addEventListener("focus", () => el.select()));
+document.querySelectorAll("[data-copy]").forEach(btn => btn.addEventListener("click", () => {
+  const text = $(btn.dataset.copy).textContent.replace(/[$,]/g, "");
+  const done = () => { btn.textContent = "Copied"; setTimeout(() => btn.textContent = "Copy", 1200); };
+  try {
+    navigator.clipboard.writeText(text).then(done, () => selectText(btn.dataset.copy));
+  } catch (e) { selectText(btn.dataset.copy); }
+}));
+function selectText(id) {
+  const r = document.createRange(); r.selectNodeContents($(id));
+  const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+}
+
+reset();
+</script>
+</body>
+</html>

@@ -6,10 +6,11 @@ It is used to calculate selling prices for items that are not entered in the sys
 | File | What it contains |
 |------|------------------|
 | `Pricing Structure - Hardware 06-2026 with siegenia discounts.xlsx` | The pricing workbook (see sheets below). |
+| `SP-Calculator-June-2026.html` | Standalone calculator. Download it and double-click to open it in any browser. |
 
 ### Sheets in the workbook
 
-- **SP Calculator June-2026**: current calculator (row 8) and the input factors table (freight, exchange rates, surcharges, margins, Siegenia discounts by material group).
+- **SP Calculator June-2026**: current calculator (row 8, with helper columns E, G and I) and the input factors table (freight, exchange rates, surcharges, margins, Siegenia discounts by material group).
 - **EUR Supplier / CAD Supplier / USD Supplier**: worked examples per supplier currency.
 - **SP Calculator Mar-2025, Oct-2023, Mar-2023, Aug-2022, Jan-2022, Apr-2021**: earlier versions, kept for reference.
 
@@ -84,7 +85,7 @@ https://claude.ai/artifact/SekFMpokdyJR2iDDDRGzYP
 
 It shows the calculation in one row like the sheet, with dropdowns for Siegenia MG, Freight, Exchange rate, Surcharge and Margin. Freight, Surcharge and Margin have a "Custom" option for values not in the list. The exchange rate is fixed to 1.60 EUR or 1.40 USD; choosing "Other rate…" shows "Management approval required" and keeps the current rate.
 
-A standalone copy (`SP-Calculator-June-2026.html`) can be opened in any browser by double-clicking it.
+A standalone copy (`SP-Calculator-June-2026.html`, in this repository) can be opened in any browser by double-clicking it.
 
 ## Change log
 
@@ -98,3 +99,4 @@ A standalone copy (`SP-Calculator-June-2026.html`) can be opened in any browser 
 | 2026-11 | Calculator: column order is now Purchase Price, Siegenia MG, Siegenia Discount, Freight %, Surcharge, Exchange Rate, Landed Cost, Profit Margin %, Fabricator, Non Fabricator, End Customer. |
 | 2026-11 | Calculator: surcharge now charged on the net purchase price only (added to freight %), no longer on top of freight. |
 | 2026-11 | Calculator rebuilt on the updated sheet: helper fields "price - disc", "price-discount+dutis" and "price after disc+fright" are hidden and used in the background. Column order now matches the sheet: Purchase Price, Siegenia MG, Siegenia Discount, Surcharge, Freight %, Exchange Rate, Landed Cost, Profit Margin %, Fabricator, Non Fabricator, End Customer. |
+| 2026-11 | Workbook replaced with the updated version (helper columns for discount, duties and freight). Standalone calculator `SP-Calculator-June-2026.html` added to the repository. |
