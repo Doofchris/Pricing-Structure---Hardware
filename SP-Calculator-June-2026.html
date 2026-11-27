@@ -16,7 +16,9 @@
   --ink: #101417;
   --muted: #3b4449;
   --line: #c6cec8;
-  --head: #dce4ec;
+  --head: #353535;          /* header row (dark grey) */
+  --head-ink: #ffffff;
+  --head-muted: #cfcfcf;
   --input: #e1efd4;       /* the sheet's "shaded area" for entry */
   --input-line: #86b35f;
   --accent: #5f9032;
@@ -32,13 +34,13 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0b0e0c; --panel: #161b18; --ink: #f4f7f5; --muted: #bcc6c0; --line: #3d4842; --head: #26302a;
+    --bg: #0b0e0c; --panel: #161b18; --ink: #f4f7f5; --muted: #bcc6c0; --line: #3d4842; --head: #353535; --head-ink: #ffffff; --head-muted: #cfcfcf;
     --input: #213319; --input-line: #6a9a43; --accent: #8cc25a; --accent-ink: #0a0f07; --accent-soft: #233719; --warn: #ffb347; --logo-grey: #c4cbc6; --logo-alpha: .09; --accent-strong: #a9dc7a; --warn: #f0a54a;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0b0e0c; --panel: #161b18; --ink: #f4f7f5; --muted: #bcc6c0; --line: #3d4842; --head: #26302a;
+  --bg: #0b0e0c; --panel: #161b18; --ink: #f4f7f5; --muted: #bcc6c0; --line: #3d4842; --head: #353535; --head-ink: #ffffff; --head-muted: #cfcfcf;
     --input: #213319; --input-line: #6a9a43; --accent: #8cc25a; --accent-ink: #0a0f07; --accent-soft: #233719; --warn: #ffb347; --logo-grey: #c4cbc6; --logo-alpha: .09; --accent-strong: #a9dc7a; --warn: #f0a54a;
   color-scheme: dark;
 }
@@ -80,8 +82,8 @@ tbody tr:last-child > * { border-bottom: 0; }
 .tiers th { background: transparent; border-top: 0; border-left: 0; border-right: 0; font-family: var(--f-display); font-weight: 700; font-size: .9rem; text-transform: uppercase; letter-spacing: .05em; text-align: center; padding: 8px 6px 6px; }
 .heads th.t { background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: .8rem; }
 .tiers th.t { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); border-top: 0; }
-.heads th { background: var(--head); font-family: var(--f-display); font-weight: 700; color: var(--ink); font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; text-align: left; line-height: 1.2; height: 48px; }
-.heads th small { display: block; font-family: var(--f-body); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted); font-size: .72rem; }
+.heads th { background: var(--head); font-family: var(--f-display); font-weight: 700; color: var(--head-ink); border-color: #4a4a4a; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; text-align: left; line-height: 1.2; height: 48px; }
+.heads th small { display: block; font-family: var(--f-body); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--head-muted); font-size: .72rem; }
 td.in { background: var(--input); padding: 4px; }
 td.out { font: 500 .95rem var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
 td.money { font-size: 1rem; font-weight: 700; padding-inline: 4px; color: var(--accent-strong); background: var(--accent-soft); }
