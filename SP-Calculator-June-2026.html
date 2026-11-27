@@ -6,35 +6,37 @@
 <title>SP Calculator June-2026</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
 <style>
 /* Layout: one worksheet row, like B7:L8 in Excel — header row, one entry row, notes row; scrolls sideways inside its own frame on narrow screens. */
 :root {
-  --bg: #f3f5f6;
+  /* Fentro (fentro.com): brand green #5F9032, light greys #F5F5F5 / #EEF2F7 / #E4E4E4, Montserrat + Inter */
+  --bg: #f5f5f5;
   --panel: #ffffff;
-  --ink: #17212b;
-  --muted: #5b6874;
-  --line: #c9d2d8;
-  --head: #e8edf0;
-  --input: #fff8db;       /* the sheet's "shaded area" for entry */
-  --input-line: #e2cf7f;
-  --accent: #1f5f8b;
-  --accent-soft: #e3eef6;
-  --warn: #9a5b00;
-  --f-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
-  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --ink: #1f2427;
+  --muted: #5f6a70;
+  --line: #e4e4e4;
+  --head: #eef2f7;
+  --input: #f2f7ee;       /* the sheet's "shaded area" for entry */
+  --input-line: #b8d4a0;
+  --accent: #5f9032;
+  --accent-ink: #ffffff;
+  --accent-soft: #edf4e7;
+  --warn: #b45309;
+  --f-display: "Montserrat", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #11171c; --panel: #19222a; --ink: #e6ecf0; --muted: #93a2ae; --line: #33424e; --head: #212c35;
-    --input: #2a2614; --input-line: #6d5f25; --accent: #7cb8e0; --accent-soft: #1b3346; --warn: #e0a54a;
+    --bg: #121614; --panel: #1a1f1c; --ink: #e8ece9; --muted: #9aa59e; --line: #2c332f; --head: #202723;
+    --input: #1d2819; --input-line: #46602f; --accent: #8cc25a; --accent-ink: #10150d; --accent-soft: #23301c; --warn: #f0a54a;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #11171c; --panel: #19222a; --ink: #e6ecf0; --muted: #93a2ae; --line: #33424e; --head: #212c35;
-  --input: #2a2614; --input-line: #6d5f25; --accent: #7cb8e0; --accent-soft: #1b3346; --warn: #e0a54a;
+  --bg: #121614; --panel: #1a1f1c; --ink: #e8ece9; --muted: #9aa59e; --line: #2c332f; --head: #202723;
+    --input: #1d2819; --input-line: #46602f; --accent: #8cc25a; --accent-ink: #10150d; --accent-soft: #23301c; --warn: #f0a54a;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -46,15 +48,18 @@ body {
 }
 .wrap { max-width: 1600px; margin: 0 auto; display: grid; gap: 16px; }
 .wrap > * { min-width: 0; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font: 700 .8rem var(--f-display); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.brand::before { content: ""; width: 28px; height: 3px; background: var(--accent); }
+header { padding-bottom: 14px; border-bottom: 1px solid var(--line); }
 header h1 {
-  font-family: var(--f-display); font-weight: 700; font-size: 1.6rem; letter-spacing: .01em;
-  margin: 0; text-wrap: balance; text-transform: uppercase;
+  font-family: var(--f-display); font-weight: 700; font-size: 1.9rem; letter-spacing: -.01em;
+  margin: 0; text-wrap: balance;
 }
 header p { margin: 4px 0 0; color: var(--muted); max-width: 80ch; }
 .hint { display: inline-flex; align-items: center; gap: 8px; font-size: .8rem; color: var(--muted); margin-top: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
 .swatch { width: 14px; height: 14px; border-radius: 2px; background: var(--input); border: 1px solid var(--input-line); }
 
-.frame { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; overflow-x: auto; min-width: 0; }
+.frame { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.06); overflow-x: auto; min-width: 0; }
 table { border-collapse: collapse; width: 100%; min-width: 1360px; table-layout: fixed; }
 th, td { border: 1px solid var(--line); padding: 6px 8px; vertical-align: middle; }
 tr > :first-child { border-left: 0; }
@@ -62,13 +67,13 @@ tr > :last-child { border-right: 0; }
 thead tr:first-child > * { border-top: 0; }
 tbody tr:last-child > * { border-bottom: 0; }
 .tiers th { background: transparent; border-top: 0; border-left: 0; border-right: 0; font-family: var(--f-display); font-weight: 700; font-size: .9rem; text-transform: uppercase; letter-spacing: .05em; text-align: center; padding: 8px 6px 6px; }
-.heads th.t { background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: .85rem; }
+.heads th.t { background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: .8rem; }
 .tiers th.t { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); border-top: 0; }
 .heads th { background: var(--head); font-family: var(--f-display); font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; text-align: left; line-height: 1.2; height: 48px; }
 .heads th small { display: block; font-family: var(--f-body); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted); font-size: .72rem; }
 td.in { background: var(--input); padding: 4px; }
 td.out { font: 500 .95rem var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
-td.money { font-size: 1.05rem; color: var(--accent); background: var(--accent-soft); }
+td.money { font-size: 1.1rem; font-weight: 600; color: var(--accent); background: var(--accent-soft); }
 td.landed { font-weight: 600; }
 select, input[type=text] {
   width: 100%; font: 500 .9rem var(--f-mono); color: var(--ink);
@@ -87,7 +92,8 @@ td.in .custom { margin-top: 3px; border-color: var(--input-line); background: va
 .copy:hover { border-color: var(--accent); }
 
 .opts { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
-.opts button { font: 500 .85rem var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 6px 12px; cursor: pointer; }
+.opts button { font: 600 .9rem var(--f-display); color: var(--accent-ink); background: var(--accent); border: 1px solid var(--accent); border-radius: 6px; padding: 9px 22px; cursor: pointer; }
+.opts button:hover { filter: brightness(1.08); }
 /* Center the text in every field (headers, entries, results). */
 .heads th, td.out, td.in input[type=text], .notes td { text-align: center; }
 td.in select { text-align: center; text-align-last: center; }
@@ -99,6 +105,7 @@ td.in select { text-align: center; text-align-last: center; }
 
 <div class="wrap">
   <header>
+    <span class="brand">Fentro · Hardware Systems</span>
     <h1>Pricing Structure for Hardware Systems</h1>
     <p>Selling price calculator for items not entered in the system, from the <em>SP Calculator June-2026</em> sheet.</p>
     <span class="hint"><span class="swatch"></span>Enter figures in shaded area only</span>
