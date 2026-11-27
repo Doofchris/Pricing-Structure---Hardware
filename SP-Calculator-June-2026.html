@@ -338,7 +338,9 @@ function selectText(id) {
   const s = getSelection(); s.removeAllRanges(); s.addRange(r);
 }
 
+// Always start from the Reset values when the calculator is opened, reloaded or returned to.
 reset();
+window.addEventListener("pageshow", reset);
 </script>
 </body>
 </html>

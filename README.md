@@ -104,3 +104,4 @@ A standalone copy (`SP-Calculator-June-2026.html`, in this repository) can be op
 | 2026-11 | Calculator: Landed Cost and selling prices shown as "CAD 18.16" instead of "$18.16". |
 | 2026-11 | Calculator: removed the "Selling Price / CAD" headers; Fabricator, Non Fabricator and End Customer are now the column headers in the same row as the other fields. |
 | 2026-11 | Calculator: "Reset" button (and opening the calculator) sets Purchase Price to 0.00 and Siegenia MG, Surcharge, Freight and Margin to "none"; exchange rate stays at EUR 1.60. Added "none" option to Freight and Margin. |
+| 2026-11 | Calculator: always starts with the Reset values when opened, reloaded or returned to (browser no longer restores old entries). |
