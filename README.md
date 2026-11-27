@@ -108,3 +108,4 @@ A standalone copy (`SP-Calculator-June-2026.html`, in this repository) can be op
 | 2026-11 | Calculator: removed the sentence "For dummy items, use the current exchange rate." from the intro text. |
 | 2026-11 | Calculator: text centered in every field (headers, entries and results). |
 | 2026-11 | Calculator: new design based on fentro.com (Fentro green #5F9032, light greys, Montserrat and Inter fonts, green Reset button and tier headers). |
+| 2026-11 | Calculator: Fentro Hardware Systems logo in the header and a large, faint green Fentro arrow in the background (both built into the file, no internet needed). |
