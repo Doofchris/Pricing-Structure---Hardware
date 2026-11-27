@@ -88,6 +88,9 @@ td.in .custom { margin-top: 3px; border-color: var(--input-line); background: va
 
 .opts { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
 .opts button { font: 500 .85rem var(--f-body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 6px 12px; cursor: pointer; }
+/* Center the text in every field (headers, entries, results). */
+.heads th, td.out, td.in input[type=text], .notes td { text-align: center; }
+td.in select { text-align: center; text-align-last: center; }
 .scrollhint { display: none; font-size: .75rem; color: var(--muted); }
 @media (max-width: 1400px) { .scrollhint { display: block; } }
 </style>
