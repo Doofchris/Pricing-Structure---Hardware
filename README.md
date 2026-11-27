@@ -91,49 +91,14 @@ How it works:
 - Exchange rate is fixed to 1.60 EUR or 1.40 USD. Choosing "Other rate…" shows "Management approval required" and keeps the current rate.
 - The hidden helper steps from the sheet (price − disc, price-discount+dutis, price after disc+fright) are calculated in the background.
 - Each selling price has a Copy button (copies the number only).
-- The calculator always opens with everything at 0.00 / "none" / 1.60 EUR. The Reset button returns to that view (with a just-for-fun bomb explosion, skipped if animations are turned off on the computer).
+- The calculator always opens with everything at 0.00 / "none" / 1.60 EUR. The Reset button returns to that view.
 
 ## Change log
 
 | Date | Change |
 |------|--------|
 | 2026-06 | Workbook updated with June-2026 calculator and Siegenia discounts. |
-| 2026-11 | README expanded with formula and input factors; online calculator added. |
-| 2026-11 | Calculator: Purchase Price is a typed field; exchange rate fixed to EUR 1.60 / USD 1.40 (other rates need management approval). |
-| 2026-11 | Calculator: removed the "below box quantity" option and the calculation breakdown panel (20% upcharge below box qty is applied manually). |
-| 2026-11 | Calculator: tried an old-school green-on-black look, then returned to the previous spreadsheet look. |
-| 2026-11 | Calculator: column order is now Purchase Price, Siegenia MG, Siegenia Discount, Freight %, Surcharge, Exchange Rate, Landed Cost, Profit Margin %, Fabricator, Non Fabricator, End Customer. |
-| 2026-11 | Calculator: surcharge now charged on the net purchase price only (added to freight %), no longer on top of freight. |
-| 2026-11 | Calculator rebuilt on the updated sheet: helper fields "price - disc", "price-discount+dutis" and "price after disc+fright" are hidden and used in the background. Column order now matches the sheet: Purchase Price, Siegenia MG, Siegenia Discount, Surcharge, Freight %, Exchange Rate, Landed Cost, Profit Margin %, Fabricator, Non Fabricator, End Customer. |
-| 2026-11 | Workbook replaced with the updated version (helper columns for discount, duties and freight). Standalone calculator `SP-Calculator-June-2026.html` added to the repository. |
-| 2026-11 | Calculator: removed the small info text under the fields (supplier currency, MG, freight/surcharge names, rate note, margin note). |
-| 2026-11 | Calculator: Landed Cost and selling prices shown as "CAD 18.16" instead of "$18.16". |
-| 2026-11 | Calculator: removed the "Selling Price / CAD" headers; Fabricator, Non Fabricator and End Customer are now the column headers in the same row as the other fields. |
-| 2026-11 | Calculator: "Reset" button (and opening the calculator) sets Purchase Price to 0.00 and Siegenia MG, Surcharge, Freight and Margin to "none"; exchange rate stays at EUR 1.60. Added "none" option to Freight and Margin. |
-| 2026-11 | Calculator: always starts with the Reset values when opened, reloaded or returned to (browser no longer restores old entries). |
-| 2026-11 | Calculator: removed the sentence "For dummy items, use the current exchange rate." from the intro text. |
-| 2026-11 | Calculator: text centered in every field (headers, entries and results). |
-| 2026-11 | Calculator: new design based on fentro.com (Fentro green #5F9032, light greys, Montserrat and Inter fonts, green Reset button and tier headers). |
-| 2026-11 | Calculator: Fentro Hardware Systems logo in the header and a large, faint green Fentro arrow in the background (both built into the file, no internet needed). |
-| 2026-11 | Calculator: more contrast (darker text and borders, stronger entry-field shading, darker green prices, bolder headers, stronger background arrow). |
-| 2026-11 | Calculator: bigger Fentro Hardware Systems logo, smaller headline. |
-| 2026-11 | Calculator: logo reduced by 10%. |
-| 2026-11 | Calculator: large, faint Fentro Hardware Systems logo in the background (replaces the green background arrow). |
-| 2026-11 | Calculator: logo removed from the top; it now appears only in the background. |
-| 2026-11 | Calculator: removed the empty white row under the fields; Copy buttons moved under each selling price. |
-| 2026-11 | Calculator: header row changed to dark grey (#353535) with white text; price headers stay green. |
-| 2026-11 | Calculator: whole header row dark grey (#353535); tier names in colour: Fabricator green, Non Fabricator blue, End Customer red. |
-| 2026-11 | Calculator: all text in the value row (entries, Landed Cost, prices, Copy buttons) in black. |
-| 2026-11 | Calculator: value row all one colour; fields you type in or choose from are dark grey with white text (hint now reads "Enter figures in dark fields only"). |
-| 2026-11 | Calculator: dark entry boxes removed; whole value row is Fentro green, entry fields have white text, calculated values black. Hint now reads "Enter values only in the fields with white text". |
-| 2026-11 | Calculator: value row back to the earlier light green; entry fields keep white text. |
-| 2026-11 | Calculator: value row filled brighter (#F1F8EA); all text in that row very light grey (#E6E6E6). |
-| 2026-11 | Calculator: text in the value row set to #D8DAD8 (same light grey as the background logo). |
-| 2026-11 | Calculator: value row white with dark grey text; Fabricator, Non Fabricator and End Customer prices in green, blue and red like their headers. Hint now reads "Type the purchase price and choose the other values from the dropdowns". |
-| 2026-11 | Calculator: Fentro Hardware Systems logo back at the top left with more space below it; intro sentence removed. Background logo stays. |
-| 2026-11 | Calculator: large background logo replaced by the Fentro arrow alone, in grey. |
-| 2026-11 | Calculator (just for fun): pressing Reset makes the page explode for about 2 seconds, then after 2 more seconds it rebuilds in the reset view. Skipped for users who turn off animations in their system settings. |
-| 2026-11 | Calculator (just for fun): Reset explosion upgraded to a real bomb blast: white flash, boom sound, fireball, shockwave, screen cracks, scorch mark, flying debris with gravity, heavy shake and lingering smoke. |
-| 2026-11 | Calculator (just for fun): Reset now drops a whistling bomb onto the middle of the page; the blast throws everything out to the sides, with a giant fireball, double shockwave, crater, cracks, heavy shake and smoke. |
-| 2026-11 | Calculator: hint now reads "Enter the purchase price and choose the other values from the dropdowns". |
-| 2026-11 | README: calculator section rewritten to describe the current version and download link. |
+| 2026-11 | README added with formula, input factors and calculator description. |
+| 2026-11 | Calculator added (online and as `SP-Calculator-June-2026.html`): one row like the sheet, dropdowns, fixed exchange rates (other rates need management approval), Copy buttons and Reset. |
+| 2026-11 | Workbook replaced with the updated version (helper columns E, G, I); surcharge is charged on the net purchase price only, not on freight. |
+| 2026-11 | Calculator design based on fentro.com, with the Fentro Hardware Systems logo. |
