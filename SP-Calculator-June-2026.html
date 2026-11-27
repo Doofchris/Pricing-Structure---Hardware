@@ -62,6 +62,7 @@ tr > :last-child { border-right: 0; }
 thead tr:first-child > * { border-top: 0; }
 tbody tr:last-child > * { border-bottom: 0; }
 .tiers th { background: transparent; border-top: 0; border-left: 0; border-right: 0; font-family: var(--f-display); font-weight: 700; font-size: .9rem; text-transform: uppercase; letter-spacing: .05em; text-align: center; padding: 8px 6px 6px; }
+.heads th.t { background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: .85rem; }
 .tiers th.t { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); border-top: 0; }
 .heads th { background: var(--head); font-family: var(--f-display); font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; text-align: left; line-height: 1.2; height: 48px; }
 .heads th small { display: block; font-family: var(--f-body); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted); font-size: .72rem; }
@@ -108,10 +109,6 @@ td.in .custom { margin-top: 3px; border-color: var(--input-line); background: va
           <col style="width:8%"><col style="width:11%"><col style="width:8%"><col style="width:8%"><col style="width:8%">
         </colgroup>
         <thead>
-          <tr class="tiers">
-            <th colspan="8"></th>
-            <th class="t">Fabricator</th><th class="t">Non Fabricator</th><th class="t">End Customer</th>
-          </tr>
           <tr class="heads">
             <th><label for="price">Purchase Price</label></th>
             <th><label for="mg">Siegenia MG</label></th>
@@ -121,9 +118,9 @@ td.in .custom { margin-top: 3px; border-color: var(--input-line); background: va
             <th><label for="rate">Exchange rate</label></th>
             <th>Landed Cost</th>
             <th><label for="margin">Profit Margin %</label></th>
-            <th>Selling Price<small>CAD</small></th>
-            <th>Selling Price<small>CAD</small></th>
-            <th>Selling Price<small>CAD</small></th>
+            <th class="t">Fabricator</th>
+            <th class="t">Non Fabricator</th>
+            <th class="t">End Customer</th>
           </tr>
         </thead>
         <tbody>

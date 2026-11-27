@@ -102,3 +102,4 @@ A standalone copy (`SP-Calculator-June-2026.html`, in this repository) can be op
 | 2026-11 | Workbook replaced with the updated version (helper columns for discount, duties and freight). Standalone calculator `SP-Calculator-June-2026.html` added to the repository. |
 | 2026-11 | Calculator: removed the small info text under the fields (supplier currency, MG, freight/surcharge names, rate note, margin note). |
 | 2026-11 | Calculator: Landed Cost and selling prices shown as "CAD 18.16" instead of "$18.16". |
+| 2026-11 | Calculator: removed the "Selling Price / CAD" headers; Fabricator, Non Fabricator and End Customer are now the column headers in the same row as the other fields. |
