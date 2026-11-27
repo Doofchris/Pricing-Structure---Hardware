@@ -127,3 +127,4 @@ A standalone copy (`SP-Calculator-June-2026.html`, in this repository) can be op
 | 2026-11 | Calculator: Fentro Hardware Systems logo back at the top left with more space below it; intro sentence removed. Background logo stays. |
 | 2026-11 | Calculator: large background logo replaced by the Fentro arrow alone, in grey. |
 | 2026-11 | Calculator (just for fun): pressing Reset makes the page explode for about 2 seconds, then after 2 more seconds it rebuilds in the reset view. Skipped for users who turn off animations in their system settings. |
+| 2026-11 | Calculator (just for fun): Reset explosion upgraded to a real bomb blast: white flash, boom sound, fireball, shockwave, screen cracks, scorch mark, flying debris with gravity, heavy shake and lingering smoke. |
