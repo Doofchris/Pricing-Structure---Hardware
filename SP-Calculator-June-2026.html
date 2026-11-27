@@ -70,7 +70,7 @@ header h1 {
 }
 header p { margin: 4px 0 0; color: var(--muted); max-width: 80ch; }
 .hint { display: inline-flex; align-items: center; gap: 8px; font-size: .8rem; color: var(--muted); margin-top: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
-.swatch { width: 14px; height: 14px; border-radius: 2px; background: var(--input); border: 1px solid var(--input-line); }
+.swatch { width: 14px; height: 14px; border-radius: 3px; background: var(--head); border: 1px solid var(--head); }
 
 .frame { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.06); overflow-x: auto; min-width: 0; }
 table { border-collapse: collapse; width: 100%; min-width: 1360px; table-layout: fixed; }
@@ -115,6 +115,14 @@ td.money .copy { display: block; margin: 4px auto 0; }
 /* Center the text in every field (headers, entries, results). */
 .heads th, td.out, td.in input[type=text], .notes td { text-align: center; }
 td.in select { text-align: center; text-align-last: center; }
+/* Value row: every cell the same colour; the fields you type in or choose from are dark with white text. */
+tbody td.in, tbody td.out, tbody td.money { background: var(--input); }
+td.in input[type=text], td.in select, td.in .custom {
+  background: var(--head); color: #ffffff; border: 1px solid var(--head); border-radius: 4px; color-scheme: dark;
+}
+td.in input[type=text]::placeholder { color: #bdbdbd; }
+td.in select option { background: var(--head); color: #ffffff; }
+td.in input[type=text]:hover, td.in select:hover { border-color: var(--accent); }
 .scrollhint { display: none; font-size: .75rem; color: var(--muted); }
 @media (max-width: 1400px) { .scrollhint { display: block; } }
 </style>
@@ -149,7 +157,7 @@ td.in select { text-align: center; text-align-last: center; }
   <header>
     <h1>Pricing Structure for Hardware Systems</h1>
     <p>Selling price calculator for items not entered in the system, from the <em>SP Calculator June-2026</em> sheet.</p>
-    <span class="hint"><span class="swatch"></span>Enter figures in shaded area only</span>
+    <span class="hint"><span class="swatch"></span>Enter figures in dark fields only</span>
   </header>
 
   <form id="calc" autocomplete="off">
