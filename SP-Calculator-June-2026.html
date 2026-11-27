@@ -19,7 +19,7 @@
   --head: #353535;          /* header row (dark grey) */
   --head-ink: #ffffff;
   --head-muted: #cfcfcf;
-  --row: #5f9032;           /* value row (Fentro green), same in light and dark */
+  --row: var(--input);      /* value row: the earlier light green (dark green in dark mode) */
   --input: #e1efd4;       /* the sheet's "shaded area" for entry */
   --input-line: #86b35f;
   --accent: #5f9032;
@@ -116,7 +116,7 @@ td.money .copy { display: block; margin: 4px auto 0; }
 /* Center the text in every field (headers, entries, results). */
 .heads th, td.out, td.in input[type=text], .notes td { text-align: center; }
 td.in select { text-align: center; text-align-last: center; }
-/* Value row: every cell the same Fentro green; entry fields have white text, calculated values black. */
+/* Value row: every cell the same light green; entry fields have white text, calculated values black. */
 tbody td.in, tbody td.out, tbody td.money { background: var(--row); }
 tbody td.out, tbody td.money, td.money .copy { color: #000000; }
 td.in input[type=text], td.in select, td.in .custom {
