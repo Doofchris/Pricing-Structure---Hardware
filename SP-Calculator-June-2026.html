@@ -11,34 +11,35 @@
 /* Layout: one worksheet row, like B7:L8 in Excel — header row, one entry row, notes row; scrolls sideways inside its own frame on narrow screens. */
 :root {
   /* Fentro (fentro.com): brand green #5F9032, light greys #F5F5F5 / #EEF2F7 / #E4E4E4, Montserrat + Inter */
-  --bg: #f5f5f5;
+  --bg: #eceeec;
   --panel: #ffffff;
-  --ink: #1f2427;
-  --muted: #5f6a70;
-  --line: #e4e4e4;
-  --head: #eef2f7;
-  --input: #f2f7ee;       /* the sheet's "shaded area" for entry */
-  --input-line: #b8d4a0;
+  --ink: #101417;
+  --muted: #3b4449;
+  --line: #c6cec8;
+  --head: #dce4ec;
+  --input: #e1efd4;       /* the sheet's "shaded area" for entry */
+  --input-line: #86b35f;
   --accent: #5f9032;
   --accent-ink: #ffffff;
-  --accent-soft: #edf4e7;
-  --logo-grey: #898989;
-  --arrow-alpha: .09;
-  --warn: #b45309;
+  --accent-strong: #3b6618;   /* darker brand green for text on light backgrounds */
+  --accent-soft: #deedd0;
+  --logo-grey: #6e6e6e;
+  --arrow-alpha: .15;
+  --warn: #a14a00;
   --f-display: "Montserrat", "Segoe UI", system-ui, sans-serif;
   --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #121614; --panel: #1a1f1c; --ink: #e8ece9; --muted: #9aa59e; --line: #2c332f; --head: #202723;
-    --input: #1d2819; --input-line: #46602f; --accent: #8cc25a; --accent-ink: #10150d; --accent-soft: #23301c; --logo-grey: #a7b0aa; --arrow-alpha: .07; --warn: #f0a54a;
+    --bg: #0b0e0c; --panel: #161b18; --ink: #f4f7f5; --muted: #bcc6c0; --line: #3d4842; --head: #26302a;
+    --input: #213319; --input-line: #6a9a43; --accent: #8cc25a; --accent-ink: #0a0f07; --accent-soft: #233719; --warn: #ffb347; --logo-grey: #c4cbc6; --arrow-alpha: .11; --accent-strong: #a9dc7a; --warn: #f0a54a;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #121614; --panel: #1a1f1c; --ink: #e8ece9; --muted: #9aa59e; --line: #2c332f; --head: #202723;
-    --input: #1d2819; --input-line: #46602f; --accent: #8cc25a; --accent-ink: #10150d; --accent-soft: #23301c; --logo-grey: #a7b0aa; --arrow-alpha: .07; --warn: #f0a54a;
+  --bg: #0b0e0c; --panel: #161b18; --ink: #f4f7f5; --muted: #bcc6c0; --line: #3d4842; --head: #26302a;
+    --input: #213319; --input-line: #6a9a43; --accent: #8cc25a; --accent-ink: #0a0f07; --accent-soft: #233719; --warn: #ffb347; --logo-grey: #c4cbc6; --arrow-alpha: .11; --accent-strong: #a9dc7a; --warn: #f0a54a;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -78,12 +79,12 @@ tbody tr:last-child > * { border-bottom: 0; }
 .tiers th { background: transparent; border-top: 0; border-left: 0; border-right: 0; font-family: var(--f-display); font-weight: 700; font-size: .9rem; text-transform: uppercase; letter-spacing: .05em; text-align: center; padding: 8px 6px 6px; }
 .heads th.t { background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: .8rem; }
 .tiers th.t { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); border-top: 0; }
-.heads th { background: var(--head); font-family: var(--f-display); font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; text-align: left; line-height: 1.2; height: 48px; }
+.heads th { background: var(--head); font-family: var(--f-display); font-weight: 700; color: var(--ink); font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; text-align: left; line-height: 1.2; height: 48px; }
 .heads th small { display: block; font-family: var(--f-body); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted); font-size: .72rem; }
 td.in { background: var(--input); padding: 4px; }
 td.out { font: 500 .95rem var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
-td.money { font-size: 1.1rem; font-weight: 600; color: var(--accent); background: var(--accent-soft); }
-td.landed { font-weight: 600; }
+td.money { font-size: 1rem; font-weight: 700; padding-inline: 4px; color: var(--accent-strong); background: var(--accent-soft); }
+td.landed { font-weight: 700; }
 select, input[type=text] {
   width: 100%; font: 500 .9rem var(--f-mono); color: var(--ink);
   background: transparent; border: 1px solid transparent; border-radius: 3px; padding: 6px 4px;
@@ -97,7 +98,7 @@ td.in .custom { margin-top: 3px; border-color: var(--input-line); background: va
 .lockmsg { margin-top: 4px; padding: 5px 6px; border-radius: 3px; background: var(--panel); border: 1px solid var(--warn); color: var(--warn); font: 600 .75rem var(--f-body); line-height: 1.25; }
 .notes td { border-top: 0; font-size: .74rem; color: var(--muted); padding: 4px 8px 8px; vertical-align: top; }
 .notes td.warn, .warn { color: var(--warn); }
-.copy { font: 500 .72rem var(--f-body); color: var(--accent); background: transparent; border: 1px solid var(--line); border-radius: 3px; padding: 2px 8px; cursor: pointer; }
+.copy { font: 600 .72rem var(--f-body); color: var(--accent-strong); background: transparent; border: 1px solid var(--line); border-radius: 3px; padding: 2px 8px; cursor: pointer; }
 .copy:hover { border-color: var(--accent); }
 
 .opts { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
