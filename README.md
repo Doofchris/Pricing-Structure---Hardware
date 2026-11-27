@@ -16,13 +16,16 @@ It is used to calculate selling prices for items that are not entered in the sys
 ## How the selling price is calculated (June-2026)
 
 ```
-Landed Cost (CAD)  = Purchase Price × (1 − Siegenia Discount) × (1 + Freight % + Surcharge %) × Exchange Rate
-Fabricator         = Landed Cost ÷ (1 − Profit Margin %)
-Non Fabricator     = Fabricator × 1.25
-End Customer       = Fabricator × 1.50
+price - disc             = Purchase Price × (1 − Siegenia Discount)
+price-discount+dutis     = price - disc × (1 + Surcharge %)
+price after disc+fright  = price - disc × Freight %
+Landed Cost (CAD)        = (price-discount+dutis + price after disc+fright) × Exchange Rate
+Fabricator               = Landed Cost ÷ (1 − Profit Margin %)
+Non Fabricator           = Fabricator × 1.25
+End Customer             = Fabricator × 1.50
 ```
 
-The surcharge (MTZ, Duties, Sima) is charged on the net purchase price only, not on freight. Note: the Excel sheet (cell H8) still multiplies surcharge and freight, which gives a slightly higher landed cost.
+Surcharge (MTZ, Duties, Sima) and freight are both charged on the net purchase price (after Siegenia discount); the surcharge is not charged on freight. This matches the updated Excel sheet (row 8, columns E, G, I, K). In the online calculator the three helper fields are hidden and calculated in the background.
 
 Selling price below box quantity: add a 20% upcharge.
 
@@ -94,3 +97,4 @@ A standalone copy (`SP-Calculator-June-2026.html`) can be opened in any browser 
 | 2026-11 | Calculator: tried an old-school green-on-black look, then returned to the previous spreadsheet look. |
 | 2026-11 | Calculator: column order is now Purchase Price, Siegenia MG, Siegenia Discount, Freight %, Surcharge, Exchange Rate, Landed Cost, Profit Margin %, Fabricator, Non Fabricator, End Customer. |
 | 2026-11 | Calculator: surcharge now charged on the net purchase price only (added to freight %), no longer on top of freight. |
+| 2026-11 | Calculator rebuilt on the updated sheet: helper fields "price - disc", "price-discount+dutis" and "price after disc+fright" are hidden and used in the background. Column order now matches the sheet: Purchase Price, Siegenia MG, Siegenia Discount, Surcharge, Freight %, Exchange Rate, Landed Cost, Profit Margin %, Fabricator, Non Fabricator, End Customer. |
