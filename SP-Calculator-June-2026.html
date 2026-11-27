@@ -170,7 +170,7 @@ td.in .custom { margin-top: 3px; border-color: var(--input-line); background: va
   </form>
 
   <div class="opts">
-    <button type="button" id="reset">Reset to sheet defaults</button>
+    <button type="button" id="reset">Reset</button>
   </div>
 
 </div>
@@ -180,6 +180,7 @@ td.in .custom { margin-top: 3px; border-color: var(--input-line); background: va
 const MG = [["none",0],["1",.3555],["6",.2192],["7",.1657],["8",.1592],["14",.1911],["18",.1911],["19",.1911],["20",.3411],["21",.3],["24",.4057],["28",.26],["38",.477],["40",.4127],["45",.2392],["47",.28],["48",.15],["51",.0735],["53",.5695],["54",.3495],["55",.3495],["59",.0748],["60",.2014],["62",1],["64",.3734],["70",.5449],["71",.3602],["72",.441],["78",.1629],["79",.1629],["89",.3407],["90",.3723],["FA",.3411],["FB",.3411],["FD",.3411],["FE",.3411],["FF",.3411],["FG",.3411],["FH",.3411],["H1",.2192],["H2",.2192],["H4",.2192],["HZ",.2192],["MA",.1592],["MB",.1592],["MC",.1592],["MD",.1592],["MH",.1592],["MS",.1592],["MX",.1592],["MY",.1592],["PE",.2724],["TA",.5695],["TB",.5695],["TC",.3734],["TD",.5695],["TE",.5588],["TF",.5695],["TG",.5695],["TH",.5588],["TI",.5695],["TJ",.5695],["TK",.5695],["TS",.3411],["ZS",.477]];
 
 const FREIGHT = [
+  ["none", 0],
   ["EUR Consolidated Container", .10],
   ["EUR Consolidated Container – Stadur Panels", .20],
   ["EUR Consolidated Container – Foam Pads", .30],
@@ -194,7 +195,7 @@ const FREIGHT = [
 ];
 
 const SURCHARGE = [
-  ["None", 0],
+  ["none", 0],
   ["Siegenia + KFV", .035],
   ["CES", .0694],
   ["OnLevel", .034],
@@ -209,6 +210,7 @@ const SURCHARGE = [
 const RATE = [["EUR", 1.6], ["USD", 1.4]];
 
 const MARGIN = [
+  ["none", 0],
   ["General min margin", .40],
   ["Reinforcements", .40],
   ["Fasteners", .45],
@@ -217,7 +219,8 @@ const MARGIN = [
   ["Tedee", .40],
 ];
 
-const DEFAULTS = { price: "10.00", mg: "0", freight: "0", rate: "0", sur: "1", margin: "0" };
+// Reset (and first open) starts from zero / none; exchange rate stays on EUR 1.60 (fixed rates only).
+const DEFAULTS = { price: "0.00", mg: "0", freight: "0", rate: "0", sur: "0", margin: "0" };
 const $ = id => document.getElementById(id);
 // Accept typed values like "12,50", "$12.50" or "1 250.00".
 const num = v => parseFloat(String(v).replace(/[\s$€%]/g, "").replace(",", "."));
@@ -242,8 +245,8 @@ function fill(sel, list, labelFn, withCustom) {
 }
 
 fill($("mg"), MG, ([k, v]) => k === "none" ? "none" : `${k} — ${pct2(v)}`);
-fill($("freight"), FREIGHT, ([k, v]) => `${fmtPct(v)} ${k}`, true);
-fill($("sur"), SURCHARGE, ([k, v]) => v === null ? k : `${fmtPct(v)} ${k}`, true);
+fill($("freight"), FREIGHT, ([k, v]) => k === "none" ? "none" : `${fmtPct(v)} ${k}`, true);
+fill($("sur"), SURCHARGE, ([k, v]) => (v === null || k === "none") ? k : `${fmtPct(v)} ${k}`, true);
 fill($("rate"), RATE, ([k, v]) => `${v.toFixed(2)} ${k}`, false);
 // Exchange rates are fixed; any other rate needs management approval.
 (() => {
@@ -263,7 +266,7 @@ fill($("rate"), RATE, ([k, v]) => `${v.toFixed(2)} ${k}`, false);
     } else { last = $("rate").value; $("rateMsg").hidden = true; }
   });
 })();
-fill($("margin"), MARGIN, ([k, v]) => `${fmtPct(v)} ${k}`, true);
+fill($("margin"), MARGIN, ([k, v]) => k === "none" ? "none" : `${fmtPct(v)} ${k}`, true);
 $("margin").querySelector('option[value="custom"]').textContent = "Other (40–65%)…";
 
 function pick(selId, list, customId, divisor) {
