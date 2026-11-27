@@ -119,3 +119,4 @@ A standalone copy (`SP-Calculator-June-2026.html`, in this repository) can be op
 | 2026-11 | Calculator: whole header row dark grey (#353535); tier names in colour: Fabricator green, Non Fabricator blue, End Customer red. |
 | 2026-11 | Calculator: all text in the value row (entries, Landed Cost, prices, Copy buttons) in black. |
 | 2026-11 | Calculator: value row all one colour; fields you type in or choose from are dark grey with white text (hint now reads "Enter figures in dark fields only"). |
+| 2026-11 | Calculator: dark entry boxes removed; whole value row is Fentro green, entry fields have white text, calculated values black. Hint now reads "Enter values only in the fields with white text". |
