@@ -101,4 +101,4 @@ How it works:
 | 2026-11 | README added with formula, input factors and calculator description. |
 | 2026-11 | Calculator added (online and as `SP-Calculator-June-2026.html`): one row like the sheet, dropdowns, fixed exchange rates (other rates need management approval), Copy buttons and Reset. |
 | 2026-11 | Workbook replaced with the updated version (helper columns E, G, I); surcharge is charged on the net purchase price only, not on freight. |
-| 2026-11 | Calculator design based on fentro.com, with the Fentro Hardware Systems logo. |
+| 2026-11 | Calculator design based on fentro.com: Fentro Hardware Systems logo at the top left, grey Fentro arrow in the background, dark grey header row with Fabricator (green), Non Fabricator (blue) and End Customer (red). |
