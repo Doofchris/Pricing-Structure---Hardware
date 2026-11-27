@@ -113,3 +113,4 @@ A standalone copy (`SP-Calculator-June-2026.html`, in this repository) can be op
 | 2026-11 | Calculator: bigger Fentro Hardware Systems logo, smaller headline. |
 | 2026-11 | Calculator: logo reduced by 10%. |
 | 2026-11 | Calculator: large, faint Fentro Hardware Systems logo in the background (replaces the green background arrow). |
+| 2026-11 | Calculator: logo removed from the top; it now appears only in the background. |
