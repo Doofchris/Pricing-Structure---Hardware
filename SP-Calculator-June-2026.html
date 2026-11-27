@@ -154,13 +154,13 @@ td.in .custom { margin-top: 3px; border-color: var(--input-line); background: va
             <td class="out money" id="end">0.00</td>
           </tr>
           <tr class="notes">
-            <td>Supplier currency</td>
             <td></td>
-            <td>From MG</td>
+            <td></td>
+            <td></td>
             <td id="surNote"></td>
             <td id="freightNote"></td>
             <td id="rateNote"></td>
-            <td>CAD</td>
+            <td></td>
             <td id="marginNote"></td>
             <td><button type="button" class="copy" data-copy="fab">Copy</button></td>
             <td><button type="button" class="copy" data-copy="nonfab">Copy</button></td>
@@ -290,11 +290,11 @@ function calc() {
   const rt = pick("rate", RATE, "rateCustom", 1);
   const mar = pick("margin", MARGIN, "marginCustom", 100);
 
-  $("freightNote").textContent = fr.note || fr.label;
-  $("rateNote").textContent = `${rt.label} → CAD · fixed rate`;
-  $("surNote").textContent = sur.label;
+  $("freightNote").textContent = "";
+  $("rateNote").textContent = "";
+  $("surNote").textContent = "";
   $("marginNote").className = "";
-  $("marginNote").textContent = $("margin").value === "custom" ? "Check with Management" : (mar.note || mar.label);
+  $("marginNote").textContent = "";
   if (isFinite(mar.value) && mar.value >= 1) { $("marginNote").textContent = "Must be below 100%"; $("marginNote").className = "warn"; }
 
   $("disc").textContent = pct2(disc);
