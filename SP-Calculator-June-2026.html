@@ -19,8 +19,8 @@
   --head: #353535;          /* header row (dark grey) */
   --head-ink: #ffffff;
   --head-muted: #cfcfcf;
-  --row: #f1f8ea;           /* value row: brighter light green */
-  --row-ink: #d8dad8;       /* value row text: light grey of the background logo */
+  --row: #ffffff;           /* value row: white */
+  --row-ink: #4a4a4a;       /* value row text: dark grey */
   --input: #e1efd4;       /* the sheet's "shaded area" for entry */
   --input-line: #86b35f;
   --accent: #5f9032;
@@ -84,9 +84,10 @@ tbody tr:last-child > * { border-bottom: 0; }
 .tiers th { background: transparent; border-top: 0; border-left: 0; border-right: 0; font-family: var(--f-display); font-weight: 700; font-size: .9rem; text-transform: uppercase; letter-spacing: .05em; text-align: center; padding: 8px 6px 6px; }
 .heads th.t { background: var(--head); font-weight: 700; font-size: .85rem; }
 /* Tier names on the dark header: green / blue / red (bright shades so they read on #353535) */
-.heads th.t-fab { color: #8fd35c; }
-.heads th.t-non { color: #6fb8ff; }
-.heads th.t-end { color: #ff6f6f; }
+:root { --c-fab: #8fd35c; --c-non: #6fb8ff; --c-end: #ff6f6f; }
+.heads th.t-fab, tbody #fab { color: var(--c-fab); }
+.heads th.t-non, tbody #nonfab { color: var(--c-non); }
+.heads th.t-end, tbody #end { color: var(--c-end); }
 .tiers th.t { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--line); border-top: 0; }
 .heads th { background: var(--head); font-family: var(--f-display); font-weight: 700; color: var(--head-ink); border-color: #4a4a4a; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; text-align: left; line-height: 1.2; height: 48px; }
 .heads th small { display: block; font-family: var(--f-body); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--head-muted); font-size: .72rem; }
@@ -163,7 +164,7 @@ td.money .copy { border-color: rgba(0,0,0,.45); }
   <header>
     <h1>Pricing Structure for Hardware Systems</h1>
     <p>Selling price calculator for items not entered in the system, from the <em>SP Calculator June-2026</em> sheet.</p>
-    <span class="hint"><span class="swatch" aria-hidden="true">A</span>Enter values only in the fields with white text</span>
+    <span class="hint">Type the purchase price and choose the other values from the dropdowns</span>
   </header>
 
   <form id="calc" autocomplete="off">
