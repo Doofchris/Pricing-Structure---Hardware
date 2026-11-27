@@ -100,6 +100,7 @@ td.in .custom { margin-top: 3px; border-color: var(--input-line); background: va
 .notes td { border-top: 0; font-size: .74rem; color: var(--muted); padding: 4px 8px 8px; vertical-align: top; }
 .notes td.warn, .warn { color: var(--warn); }
 .copy { font: 600 .72rem var(--f-body); color: var(--accent-strong); background: transparent; border: 1px solid var(--line); border-radius: 3px; padding: 2px 8px; cursor: pointer; }
+td.money .copy { display: block; margin: 4px auto 0; }
 .copy:hover { border-color: var(--accent); }
 
 .opts { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
@@ -189,23 +190,11 @@ td.in select { text-align: center; text-align-last: center; }
             <td class="in">
               <select id="margin"></select>
               <input class="custom" id="marginCustom" type="text" inputmode="decimal" placeholder="%" hidden aria-label="Custom margin percent">
+              <div class="lockmsg" id="marginMsg" role="alert" hidden>Must be below 100%</div>
             </td>
-            <td class="out money" id="fab">0.00</td>
-            <td class="out money" id="nonfab">0.00</td>
-            <td class="out money" id="end">0.00</td>
-          </tr>
-          <tr class="notes">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td id="surNote"></td>
-            <td id="freightNote"></td>
-            <td id="rateNote"></td>
-            <td></td>
-            <td id="marginNote"></td>
-            <td><button type="button" class="copy" data-copy="fab">Copy</button></td>
-            <td><button type="button" class="copy" data-copy="nonfab">Copy</button></td>
-            <td><button type="button" class="copy" data-copy="end">Copy</button></td>
+            <td class="out money"><span id="fab">0.00</span><button type="button" class="copy" data-copy="fab">Copy</button></td>
+            <td class="out money"><span id="nonfab">0.00</span><button type="button" class="copy" data-copy="nonfab">Copy</button></td>
+            <td class="out money"><span id="end">0.00</span><button type="button" class="copy" data-copy="end">Copy</button></td>
           </tr>
         </tbody>
       </table>
@@ -334,12 +323,7 @@ function calc() {
   const rt = pick("rate", RATE, "rateCustom", 1);
   const mar = pick("margin", MARGIN, "marginCustom", 100);
 
-  $("freightNote").textContent = "";
-  $("rateNote").textContent = "";
-  $("surNote").textContent = "";
-  $("marginNote").className = "";
-  $("marginNote").textContent = "";
-  if (isFinite(mar.value) && mar.value >= 1) { $("marginNote").textContent = "Must be below 100%"; $("marginNote").className = "warn"; }
+  $("marginMsg").hidden = !(isFinite(mar.value) && mar.value >= 1);
 
   $("disc").textContent = pct2(disc);
   // Hidden helper fields, same as the Excel sheet (row 8):
