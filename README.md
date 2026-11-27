@@ -78,14 +78,20 @@ Selling price below box quantity: add a 20% upcharge.
 
 **Siegenia discount**: looked up by Siegenia material group (MG) in the June-2026 sheet, rows 14–78.
 
-## Online calculator
+## Calculator (`SP-Calculator-June-2026.html`)
 
-A web version of the June-2026 calculator is available (private link, ask the owner for access):
-https://claude.ai/artifact/SekFMpokdyJR2iDDDRGzYP
+**Download:** right-click https://github.com/Doofchris/Pricing-Structure---Hardware/raw/main/SP-Calculator-June-2026.html and choose "Save link as…", then double-click the file to open it in any browser. Everything (logo, calculation) is built into the file; only the fonts need internet.
 
-It shows the calculation in one row like the sheet, with dropdowns for Siegenia MG, Freight, Exchange rate, Surcharge and Margin. Freight, Surcharge and Margin have a "Custom" option for values not in the list. The exchange rate is fixed to 1.60 EUR or 1.40 USD; choosing "Other rate…" shows "Management approval required" and keeps the current rate.
+**Online version** (private link, ask the owner for access): https://claude.ai/artifact/SekFMpokdyJR2iDDDRGzYP
 
-A standalone copy (`SP-Calculator-June-2026.html`, in this repository) can be opened in any browser by double-clicking it.
+How it works:
+
+- One row like the Excel sheet: Purchase Price, Siegenia MG, Siegenia Discount, Surcharge, Freight %, Exchange Rate, Landed Cost, Profit Margin %, then the Fabricator, Non Fabricator and End Customer selling prices in CAD.
+- Enter the purchase price; choose Siegenia MG, Surcharge, Freight, Exchange Rate and Margin from the dropdowns. Surcharge, Freight and Margin also have "none" and a "Custom" option.
+- Exchange rate is fixed to 1.60 EUR or 1.40 USD. Choosing "Other rate…" shows "Management approval required" and keeps the current rate.
+- The hidden helper steps from the sheet (price − disc, price-discount+dutis, price after disc+fright) are calculated in the background.
+- Each selling price has a Copy button (copies the number only).
+- The calculator always opens with everything at 0.00 / "none" / 1.60 EUR. The Reset button returns to that view (with a just-for-fun bomb explosion, skipped if animations are turned off on the computer).
 
 ## Change log
 
@@ -130,3 +136,4 @@ A standalone copy (`SP-Calculator-June-2026.html`, in this repository) can be op
 | 2026-11 | Calculator (just for fun): Reset explosion upgraded to a real bomb blast: white flash, boom sound, fireball, shockwave, screen cracks, scorch mark, flying debris with gravity, heavy shake and lingering smoke. |
 | 2026-11 | Calculator (just for fun): Reset now drops a whistling bomb onto the middle of the page; the blast throws everything out to the sides, with a giant fireball, double shockwave, crater, cracks, heavy shake and smoke. |
 | 2026-11 | Calculator: hint now reads "Enter the purchase price and choose the other values from the dropdowns". |
+| 2026-11 | README: calculator section rewritten to describe the current version and download link. |
