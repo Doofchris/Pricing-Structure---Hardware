@@ -121,9 +121,9 @@ td.in .custom { margin-top: 3px; border-color: var(--input-line); background: va
             <th><label for="rate">Exchange rate</label></th>
             <th>Landed Cost</th>
             <th><label for="margin">Profit Margin %</label></th>
-            <th>Selling Price<small>CAD $</small></th>
-            <th>Selling Price<small>CAD $</small></th>
-            <th>Selling Price<small>CAD $</small></th>
+            <th>Selling Price<small>CAD</small></th>
+            <th>Selling Price<small>CAD</small></th>
+            <th>Selling Price<small>CAD</small></th>
           </tr>
         </thead>
         <tbody>
@@ -144,7 +144,7 @@ td.in .custom { margin-top: 3px; border-color: var(--input-line); background: va
               <input class="custom" id="rateCustom" type="text" hidden aria-hidden="true" tabindex="-1">
               <div class="lockmsg" id="rateMsg" role="alert" hidden>Management approval required</div>
             </td>
-            <td class="out landed" id="landedCell">$0.00</td>
+            <td class="out landed" id="landedCell">CAD 0.00</td>
             <td class="in">
               <select id="margin"></select>
               <input class="custom" id="marginCustom" type="text" inputmode="decimal" placeholder="%" hidden aria-label="Custom margin percent">
@@ -306,10 +306,10 @@ function calc() {
   const fab = mar.value < 1 ? landed / (1 - mar.value) : NaN;
   const nonfab = fab * 1.25, end = fab * 1.5;
 
-  $("landedCell").textContent = "$" + money(landed);
-  $("fab").textContent = "$" + money(fab);
-  $("nonfab").textContent = "$" + money(nonfab);
-  $("end").textContent = "$" + money(end);
+  $("landedCell").textContent = "CAD " + money(landed);
+  $("fab").textContent = "CAD " + money(fab);
+  $("nonfab").textContent = "CAD " + money(nonfab);
+  $("end").textContent = "CAD " + money(end);
 
 }
 
@@ -327,7 +327,7 @@ $("reset").addEventListener("click", reset);
 // Select the whole value on click so typing replaces it.
 document.querySelectorAll('input[type=text]').forEach(el => el.addEventListener("focus", () => el.select()));
 document.querySelectorAll("[data-copy]").forEach(btn => btn.addEventListener("click", () => {
-  const text = $(btn.dataset.copy).textContent.replace(/[$,]/g, "");
+  const text = $(btn.dataset.copy).textContent.replace(/CAD|[$,\s]/g, "");
   const done = () => { btn.textContent = "Copied"; setTimeout(() => btn.textContent = "Copy", 1200); };
   try {
     navigator.clipboard.writeText(text).then(done, () => selectText(btn.dataset.copy));
