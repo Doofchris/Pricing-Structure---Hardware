@@ -13,7 +13,7 @@
   /* Fentro (fentro.com): brand green #5F9032, light greys #F5F5F5 / #EEF2F7 / #E4E4E4, Montserrat + Inter */
   --bg: #eceeec;
   --panel: #ffffff;
-  --ink: #101417;
+  --ink: #000000;
   --muted: #3b4449;
   --line: #c6cec8;
   --head: #353535;          /* header row (dark grey) */
@@ -90,7 +90,7 @@ tbody tr:last-child > * { border-bottom: 0; }
 .heads th small { display: block; font-family: var(--f-body); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--head-muted); font-size: .72rem; }
 td.in { background: var(--input); padding: 4px; }
 td.out { font: 500 .95rem var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
-td.money { font-size: 1rem; font-weight: 700; padding-inline: 4px; color: var(--accent-strong); background: var(--accent-soft); }
+td.money { font-size: 1rem; font-weight: 700; padding-inline: 4px; color: var(--ink); background: var(--accent-soft); }
 td.landed { font-weight: 700; }
 select, input[type=text] {
   width: 100%; font: 500 .9rem var(--f-mono); color: var(--ink);
@@ -105,7 +105,7 @@ td.in .custom { margin-top: 3px; border-color: var(--input-line); background: va
 .lockmsg { margin-top: 4px; padding: 5px 6px; border-radius: 3px; background: var(--panel); border: 1px solid var(--warn); color: var(--warn); font: 600 .75rem var(--f-body); line-height: 1.25; }
 .notes td { border-top: 0; font-size: .74rem; color: var(--muted); padding: 4px 8px 8px; vertical-align: top; }
 .notes td.warn, .warn { color: var(--warn); }
-.copy { font: 600 .72rem var(--f-body); color: var(--accent-strong); background: transparent; border: 1px solid var(--line); border-radius: 3px; padding: 2px 8px; cursor: pointer; }
+.copy { font: 600 .72rem var(--f-body); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 3px; padding: 2px 8px; cursor: pointer; }
 td.money .copy { display: block; margin: 4px auto 0; }
 .copy:hover { border-color: var(--accent); }
 

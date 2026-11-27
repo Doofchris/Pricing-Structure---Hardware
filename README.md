@@ -117,3 +117,4 @@ A standalone copy (`SP-Calculator-June-2026.html`, in this repository) can be op
 | 2026-11 | Calculator: removed the empty white row under the fields; Copy buttons moved under each selling price. |
 | 2026-11 | Calculator: header row changed to dark grey (#353535) with white text; price headers stay green. |
 | 2026-11 | Calculator: whole header row dark grey (#353535); tier names in colour: Fabricator green, Non Fabricator blue, End Customer red. |
+| 2026-11 | Calculator: all text in the value row (entries, Landed Cost, prices, Copy buttons) in black. |
