@@ -121,3 +121,4 @@ A standalone copy (`SP-Calculator-June-2026.html`, in this repository) can be op
 | 2026-11 | Calculator: value row all one colour; fields you type in or choose from are dark grey with white text (hint now reads "Enter figures in dark fields only"). |
 | 2026-11 | Calculator: dark entry boxes removed; whole value row is Fentro green, entry fields have white text, calculated values black. Hint now reads "Enter values only in the fields with white text". |
 | 2026-11 | Calculator: value row back to the earlier light green; entry fields keep white text. |
+| 2026-11 | Calculator: value row filled brighter (#F1F8EA); all text in that row very light grey (#E6E6E6). |
